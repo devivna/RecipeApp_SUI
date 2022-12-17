@@ -9,9 +9,11 @@ import SwiftUI
 
 struct CategoryView: View {
     
+    @EnvironmentObject private var itemsVM: ItemsViewModel
+    
     var category: Category
     var items: [Item] {
-        return Item.all.filter( { $0.category == category.rawValue } )
+        return itemsVM.items.filter( { $0.category == category.rawValue } )
     }
     
     var body: some View {
@@ -25,5 +27,6 @@ struct CategoryView: View {
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryView(category: Category.categ1)
+            .environmentObject(ItemsViewModel())
     }
 }

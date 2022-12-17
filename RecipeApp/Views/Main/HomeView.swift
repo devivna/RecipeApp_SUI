@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+   @EnvironmentObject var itemsVM: ItemsViewModel
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                ItemList(items: Item.all)
+                ItemList(items: itemsVM.items)
+                
+    //            ItemList(items: Item.all)
                 
     //            List(Item.all) { item in
     //                Text(item.name)
@@ -29,5 +34,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(ItemsViewModel())
     }
 }
